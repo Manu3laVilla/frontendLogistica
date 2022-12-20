@@ -1,0 +1,35 @@
+.container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+
+  input{
+    width: 700px;
+    margin-right: 10px;
+    flex: 1 1 auto;
+    height: 33px;
+    border-radius: 4px;
+    border: 1px solid #e2e2e2;
+    padding: 0px 10px;
+  }
+}
+
+.content{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+
+  .table{
+    width: 93%;
+  }
+
+  table{
+    border-radius: 8px;
+    border: 1px solid #75777a5b;
+  }
+}
+

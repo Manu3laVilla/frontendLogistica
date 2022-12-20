@@ -1,0 +1,46 @@
+<div class="container">
+  <p class="content">
+    Ingreso De Nuevo Producto
+  </p>
+
+  <form class="form item" #newproductForm="ngForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Digita El Nombre Del Producto</mat-label>
+      <input matInput name="nombreProducto"[(ngModel)]="model.nombreProducto" #nombreProducto="ngModel" required>
+      <mat-error *ngIf="!nombreProducto.valid || nombreProducto.pristine">El Nombre Del Producto Es Obligatorio</mat-error>
+      <mat-hint>Nombre Producto</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Selecciona El Tipo De Entrega</mat-label>
+      <mat-select matInput name="idLogisticaProducto" [(ngModel)]="model.idLogisticaProducto" #idLogisticaProducto="ngModel">
+        <mat-option *ngFor="let l of logistica" [value]="l">
+          {{l.tipoLogistica}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="!idLogisticaProducto.valid || idLogisticaProducto.pristine">El Tipo De Entrega Es Obligatoria</mat-error>
+      <mat-hint>Tipo De Entrega</mat-hint>
+    </mat-form-field>
+  </form>
+</div>
+<div class="container__button">
+  <button
+  [disabled]="!newproductForm.form.valid"
+  mat-raised-button
+  color="primary"
+  type="submit"
+  (click)="onSave(newproductForm)">
+    Guardar
+  </button>
+</div>
+
+<div class="container__button">
+  <button
+  mat-raised-button
+  color="primary"
+  type="submit"
+  (click)="cancel()">
+    Cancelar
+  </button>
+</div>
+

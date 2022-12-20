@@ -1,0 +1,56 @@
+<div class="container">
+  <p class="content">
+    Ingreso De Nuevo Producto
+  </p>
+
+  <form class="form item" #newproductForm="ngForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Digita El Nombre Del Almacen</mat-label>
+      <input matInput name="nombreAlmacen" [(ngModel)]="model.nombreAlmacen" #nombreAlmacen="ngModel" required>
+      <mat-error *ngIf="!nombreAlmacen.valid || nombreAlmacen.pristine">El Nombre Del Almacen Es Obligatorio</mat-error>
+      <mat-hint>Nombre Almacen</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Selecciona El Tipo De Almacenaje</mat-label>
+      <mat-select matInput name="idLogisticaAlmacen" [(ngModel)]="model.idLogisticaAlmacen" #idLogisticaAlmacen="ngModel" required>
+        <mat-option *ngFor="let l of logistica" [value]="l">
+          {{l.tipoLogistica}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="!idLogisticaAlmacen.valid || idLogisticaAlmacen.pristine">El Tipo De Almacenaje Es Obligatoria</mat-error>
+      <mat-hint>Tipo De Almacenaje</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Selecciona La Ciudad</mat-label>
+      <mat-select matInput name="idCiudadAlmacen" [(ngModel)]="model.idCiudadAlmacen" #idCiudadAlmacen="ngModel" required>
+        <mat-option *ngFor="let c of ciudad" [value]="c">
+          {{c.nombreCiudad}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="!idCiudadAlmacen.valid || idCiudadAlmacen.pristine">La Ubicación Del Almacen Es Obligatoria</mat-error>
+      <mat-hint>Ubicación Del Almacen</mat-hint>
+    </mat-form-field>
+  </form>
+</div>
+<div class="container__button">
+  <button
+  [disabled]="!newproductForm.form.valid"
+  mat-raised-button
+  color="primary"
+  type="submit"
+  (click)="onSave(newproductForm)">
+    Guardar
+  </button>
+</div>
+
+<div class="container__button">
+  <button
+  mat-raised-button
+  color="primary"
+  type="submit"
+  (click)="cancel()">
+    Cancelar
+  </button>
+</div>

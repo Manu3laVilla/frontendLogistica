@@ -16,7 +16,8 @@ const routes: Routes = [
   { path: 'newvehiculoterrestre', loadChildren: () => import('./pages/vehiculos/newvehiculoterrestre/newvehiculoterrestre.module').then(m => m.NewvehiculoterrestreModule) },
   { path: 'newvehiculoterrestre/:id', loadChildren: () => import('./pages/vehiculos/newvehiculoterrestre/newvehiculoterrestre.module').then(m => m.NewvehiculoterrestreModule) },
   { path: 'newvehiculomaritimo', loadChildren: () => import('./pages/vehiculos/newvehiculomaritimo/newvehiculomaritimo.module').then(m => m.NewvehiculomaritimoModule) },
-  { path: 'newvehiculomaritimo/:id', loadChildren: () => import('./pages/vehiculos/newvehiculomaritimo/newvehiculomaritimo.module').then(m => m.NewvehiculomaritimoModule) }
+  { path: 'newvehiculomaritimo/:id', loadChildren: () => import('./pages/vehiculos/newvehiculomaritimo/newvehiculomaritimo.module').then(m => m.NewvehiculomaritimoModule) },
+  { path: 'newpedido', loadChildren: () => import('./pages/pedidos/newpedido/newpedido.module').then(m => m.NewpedidoModule) }
 ];
 
 @NgModule({

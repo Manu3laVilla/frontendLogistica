@@ -1,1 +1,120 @@
-<p>newpedido works!</p>
+<div class="container">
+  <p class="content">
+    Ingreso De Nuevo Pedido
+  </p>
+
+  <form class="form item" #newproductForm="ngForm">
+    <div class="container__item col">
+      <mat-form-field appearance="fill">
+        <mat-label>Selecciona El Cliente</mat-label>
+        <mat-select matInput name="idCliente" [(ngModel)]="model.idCliente" #idCliente="ngModel">
+          <mat-option *ngFor="let c of cliente" [value]="c">
+            {{c.nombreCliente}} {{c.apellidoCliente}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="!idCliente.valid || idCliente.pristine">El Cliente Es Obligatorio</mat-error>
+        <mat-hint>Cliente</mat-hint>
+      </mat-form-field>
+
+      <div style="width: 30px;"></div>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Selecciona El Tipo De Entrega</mat-label>
+        <mat-select matInput name="idLogistica" [(ngModel)]="model.idLogistica" #idLogistica="ngModel">
+          <mat-option *ngFor="let l of logistica" [value]="l">
+            {{l.tipoLogistica}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="!idLogistica.valid || idLogistica.pristine">El Tipo De Entrega Es Obligatoria</mat-error>
+        <mat-hint>Tipo De Entrega</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div class="container__item col">
+      <mat-form-field appearance="fill">
+        <mat-label>Selecciona El Producto</mat-label>
+        <mat-select matInput name="idProducto" [(ngModel)]="model.idProducto" #idProducto="ngModel">
+          <mat-option *ngFor="let p of producto" [value]="p">
+            {{p.nombreProducto}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="!idProducto.valid || idProducto.pristine">El Producto Es Obligatorio</mat-error>
+        <mat-hint>Producto</mat-hint>
+      </mat-form-field>
+
+      <div style="width: 30px;"></div>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Digita La Cantidad De Producto</mat-label>
+        <input matInput
+        name="cantidad"
+        [(ngModel)]="model.cantidad"
+        #cantidad="ngModel"
+        required
+        pattern='^[0-9]+$'>
+        <mat-error *ngIf="!cantidad.valid || cantidad.pristine">
+          La Cantidad De Producto Es Obligatoria y Solo Admite Números
+        </mat-error>
+        <mat-hint>Cantidad De Producto</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div class="container__item col">
+      <mat-form-field appearance="fill">
+        <mat-label>Selecciona El Vehiculo</mat-label>
+        <mat-select matInput name="idVehiculo" [(ngModel)]="model.idVehiculo" #idVehiculo="ngModel">
+          <mat-option *ngFor="let v of vehiculo" [value]="v">
+            {{v.placaVehiculo}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="!idVehiculo.valid || idVehiculo.pristine">El Vehiculo Es Obligatorio</mat-error>
+        <mat-hint>Vehiculo</mat-hint>
+      </mat-form-field>
+
+      <div style="width: 30px;"></div>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Selecciona La Ciudad</mat-label>
+        <mat-select matInput name="idCiudad" [(ngModel)]="model.idCiudad" #idCiudad="ngModel">
+          <mat-option *ngFor="let cd of ciudad" [value]="cd">
+            {{cd.nombreCiudad}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="!idCiudad.valid || idCiudad.pristine">La Ciudad Es Obligatoria</mat-error>
+        <mat-hint>Ciudad</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div class="container__item">
+      <mat-form-field appearance="fill">
+        <mat-label>Selecciona El Punto De Entrega</mat-label>
+        <mat-select matInput name="idCentro" [(ngModel)]="model.idCentro" #idCentro="ngModel">
+          <mat-option *ngFor="let a of almacen" [value]="a">
+            {{a.nombreAlmacen}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="!idCentro.valid || idCentro.pristine">El Centro De Entrega Es Obligatorio</mat-error>
+        <mat-hint>Centro De Entrega</mat-hint>
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+<div class="container__button col">
+  <button
+  [disabled]="!newproductForm.form.valid"
+  mat-raised-button
+  color="primary"
+  type="submit"
+  (click)="onSave(newproductForm)"
+  style="margin-right: 10px;">
+    Guardar
+  </button>
+
+  <button
+  mat-raised-button
+  color="primary"
+  type="submit"
+  (click)="cancel()">
+    Cancelar
+  </button>
+</div>

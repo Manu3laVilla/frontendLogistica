@@ -16,6 +16,7 @@ export interface Pedido {
   idCentro: Almacen;
   cantidad: number;
   costoEnvio: number;
+  costoPagar: number;
   fechaRegistro: string;
   fechaEntrega: string;
   guia: string;

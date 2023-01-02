@@ -1,0 +1,64 @@
+.container{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  mat-form-field{
+    width: 500px;
+    height: 70px;
+    margin-top: 5px;
+  }
+
+  select{
+    width: 500px;
+    margin-top: 20px;
+    height: 70px;
+  }
+
+  .content{
+    font-size: 25px;
+    padding: 0.5rem;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .item{
+    flex: 1 1 auto;
+  }
+
+  .form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .container__item{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 10px;
+    }
+  }
+
+  .form__element{
+    width: 100%;
+    margin-bottom: .5rem;
+  }
+}
+
+.container__button{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+
+  button{
+    width: 300px;
+    height: 40px;
+  }
+}

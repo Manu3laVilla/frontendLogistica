@@ -16,6 +16,14 @@ export class PedidosService {
     return this.http.get<Pedido[]>(`${this.url}/all`)
   }
 
+  getPedidoByCliente(idCliente: number): Observable<Pedido[]>{
+    return this.http.get<Pedido[]>(`${this.url}/by/${idCliente}`)
+  }
+
+  getPedidoByGuia(guia: string): Observable<Pedido[]>{
+    return this.http.get<Pedido[]>(`${this.url}/byPedido/${guia}`)
+  }
+
   savePedidos(pedido: Pedido): Observable<Pedido>{
     return this.http.post<Pedido>(`${this.url}/save`, pedido);
   }

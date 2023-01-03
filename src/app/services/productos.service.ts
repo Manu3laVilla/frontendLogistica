@@ -30,8 +30,11 @@ export class ProductosService {
     return this.http.put<Producto>(`${this.url}/${id}/update`, producto);
   }
 
-  getUserByNameProduct(nameProduct:string): Observable<Producto[]>{
-    return this.http.get<Producto[]>(`${this.url}/byLogistica/${nameProduct}`);
+  getProductByNameProduct(nameProduct:string): Observable<Producto[]>{
+    return this.http.get<Producto[]>(`${this.url}/by/${nameProduct}`);
   }
 
+  getProductByLogistica(idLogistica:number): Observable<Producto[]>{
+    return this.http.get<Producto[]>(`${this.url}/byLogistica/${idLogistica}`);
+  }
 }

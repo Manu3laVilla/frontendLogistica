@@ -1,24 +1,24 @@
 <div class="container">
   <p class="content">
-    Ingreso De Nuevo Vehiculo Terrestre
+    Ingreso De Nuevo Vehículo Terrestre
   </p>
 
   <form class="form item" #newproductForm="ngForm">
     <mat-form-field appearance="fill">
-      <mat-label>Digita La Placa De Vehiculo</mat-label>
+      <mat-label>Digita La Placa De Vehículo</mat-label>
       <input matInput name="placaVehiculo"
       [(ngModel)]="model.placaVehiculo"
       #placaVehiculo="ngModel"
       required
       pattern='[A-Za-z]{3}[0-9]{3}'>
       <mat-error *ngIf="!placaVehiculo.valid || placaVehiculo.pristine">
-        La Placa Del Vehiculo Es Obligatoria y Debe Tener Un Formato De 3 Letras Seguida De 3 Números (Ejemplo: XXX111)
+        La Placa Del Vehículo Es Obligatoria y Debe Tener Un Formato De 3 Letras Seguida De 3 Números (Ejemplo: XXX111)
       </mat-error>
-      <mat-hint>Placa Vehiculo</mat-hint>
+      <mat-hint>Placa Vehículo</mat-hint>
     </mat-form-field>
 
     <section appearance="fill">
-      <mat-checkbox name="idLogisticaVehiculo" [(ngModel)]="model.idLogisticaVehiculo" #placaVehiculo="ngModel">Tipo De Vehiculo: {{model.idLogisticaVehiculo.tipoLogistica}}</mat-checkbox>
+      <mat-checkbox name="idLogisticaVehiculo" [(ngModel)]="model.idLogisticaVehiculo" #placaVehiculo="ngModel">Tipo De Vehículo: {{model.idLogisticaVehiculo.tipoLogistica}}</mat-checkbox>
     </section>
   </form>
 </div>

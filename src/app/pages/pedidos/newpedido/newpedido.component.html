@@ -7,20 +7,20 @@
     <div class="container__item col">
       <mat-form-field appearance="fill">
         <mat-label>Selecciona El Cliente</mat-label>
-        <mat-select matInput name="idCliente" [(ngModel)]="model.idCliente" #idCliente="ngModel">
+        <mat-select matInput name="idCliente" [(ngModel)]="model.idCliente" #idCliente="ngModel" required>
           <mat-option *ngFor="let c of cliente" [value]="c">
             {{c.nombreCliente}} {{c.apellidoCliente}}
           </mat-option>
         </mat-select>
         <mat-error *ngIf="!idCliente.valid || idCliente.pristine">El Cliente Es Obligatorio</mat-error>
-        <mat-hint>Cliente</mat-hint>
+        <mat-hint>Tipo De Entrega</mat-hint>
       </mat-form-field>
 
       <div style="width: 30px;"></div>
 
       <mat-form-field appearance="fill">
         <mat-label>Selecciona El Tipo De Entrega</mat-label>
-        <mat-select matInput name="idLogistica" [(ngModel)]="model.idLogistica" #idLogistica="ngModel">
+        <mat-select matInput name="idLogistica" [(ngModel)]="model.idLogistica" #idLogistica="ngModel" (ngModelChange)="cargarElementByLogistica()" required>
           <mat-option *ngFor="let l of logistica" [value]="l">
             {{l.tipoLogistica}}
           </mat-option>
@@ -33,7 +33,7 @@
     <div class="container__item col">
       <mat-form-field appearance="fill">
         <mat-label>Selecciona El Producto</mat-label>
-        <mat-select matInput name="idProducto" [(ngModel)]="model.idProducto" #idProducto="ngModel">
+        <mat-select matInput name="idProducto" [(ngModel)]="model.idProducto" #idProducto="ngModel" required>
           <mat-option *ngFor="let p of producto" [value]="p">
             {{p.nombreProducto}}
           </mat-option>
@@ -42,7 +42,7 @@
         <mat-hint>Producto</mat-hint>
       </mat-form-field>
 
-      <div style="width: 30px;"></div>
+          <div style="width: 30px;"></div>
 
       <mat-form-field appearance="fill">
         <mat-label>Digita La Cantidad De Producto</mat-label>
@@ -62,7 +62,7 @@
     <div class="container__item col">
       <mat-form-field appearance="fill">
         <mat-label>Selecciona El Vehiculo</mat-label>
-        <mat-select matInput name="idVehiculo" [(ngModel)]="model.idVehiculo" #idVehiculo="ngModel">
+        <mat-select matInput name="idVehiculo" [(ngModel)]="model.idVehiculo" #idVehiculo="ngModel" required>
           <mat-option *ngFor="let v of vehiculo" [value]="v">
             {{v.placaVehiculo}}
           </mat-option>
@@ -75,7 +75,7 @@
 
       <mat-form-field appearance="fill">
         <mat-label>Selecciona La Ciudad</mat-label>
-        <mat-select matInput name="idCiudad" [(ngModel)]="model.idCiudad" #idCiudad="ngModel">
+        <mat-select matInput name="idCiudad" [(ngModel)]="model.idCiudad" #idCiudad="ngModel" (ngModelChange)="cargarAlmacenByCiudad()" required>
           <mat-option *ngFor="let cd of ciudad" [value]="cd">
             {{cd.nombreCiudad}}
           </mat-option>
@@ -88,7 +88,7 @@
     <div class="container__item">
       <mat-form-field appearance="fill">
         <mat-label>Selecciona El Punto De Entrega</mat-label>
-        <mat-select matInput name="idCentro" [(ngModel)]="model.idCentro" #idCentro="ngModel">
+        <mat-select matInput name="idCentro" [(ngModel)]="model.idCentro" #idCentro="ngModel" required>
           <mat-option *ngFor="let a of almacen" [value]="a">
             {{a.nombreAlmacen}}
           </mat-option>

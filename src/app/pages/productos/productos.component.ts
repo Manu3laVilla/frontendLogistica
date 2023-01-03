@@ -28,7 +28,7 @@ export class ProductosComponent implements OnInit{
 
   ngOnInit(): void {
     if(this.search != ''){
-      this.productoSvc.getUserByNameProduct(this.search)
+      this.productoSvc.getProductByNameProduct(this.search)
       .subscribe(data => {this.dataSource = new MatTableDataSource(data);
                           this.products = (this.products);});
     } else{

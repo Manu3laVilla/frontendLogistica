@@ -1,6 +1,6 @@
 <div class="container">
   <div class="col">
-    <input _ngcontent-c27 type="text" placeholder="Buscar Producto" [(ngModel)]="search">
+    <input _ngcontent-c27 type="text" placeholder="Buscar Almacén" [(ngModel)]="search">
 
     <button mat-raised-button color="primary" style="width: 1rem;" (click)="ngOnInit()">
       <mat-icon>search</mat-icon>
@@ -8,7 +8,7 @@
 
     <button mat-raised-button color="primary" style="margin-left: 20px;" (click)="goToNewAlmacen()">
       <mat-icon>add_box</mat-icon>
-      Agregar Almacen
+      Agregar Almacén
     </button>
   </div>
 </div>
@@ -25,19 +25,19 @@
 
         <!-- Name Column -->
         <ng-container matColumnDef="nombreAlmacen">
-          <th mat-header-cell *matHeaderCellDef> Almacen </th>
+          <th mat-header-cell *matHeaderCellDef> Almacén </th>
           <td mat-cell *matCellDef="let element"> {{element.nombreAlmacen}} </td>
         </ng-container>
 
         <!-- Name Column -->
         <ng-container matColumnDef="idLogisticaAlmacen">
-          <th mat-header-cell *matHeaderCellDef> Tipo De Almacen </th>
+          <th mat-header-cell *matHeaderCellDef> Tipo De Almacén </th>
           <td mat-cell *matCellDef="let element"> {{element.idLogisticaAlmacen.tipoLogistica}} </td>
         </ng-container>
 
         <!-- Name Column -->
         <ng-container matColumnDef="idCiudadAlmacen">
-          <th mat-header-cell *matHeaderCellDef> Ubicación Del Almacen </th>
+          <th mat-header-cell *matHeaderCellDef> Ubicación Del Almacén </th>
           <td mat-cell *matCellDef="let element"> {{element.idCiudadAlmacen.nombreCiudad}} </td>
         </ng-container>
 

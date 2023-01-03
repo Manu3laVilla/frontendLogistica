@@ -34,6 +34,8 @@ export class NewpedidoComponent implements OnInit {
   ciudad!: Ciudad[];
   almacen!: Almacen[];
 
+  idLogistica! : number;
+  idCiudad! : number;
 
   id!: number;
   isEdit: boolean = false;
@@ -75,11 +77,6 @@ export class NewpedidoComponent implements OnInit {
       this.logistica = data;
     })
 
-    this.productSvc.getProducts()
-    .subscribe(data => {
-      this.producto = data;
-    })
-
     this.pedidoSvc.getPedidos()
     .subscribe(data => {
       this.pedido = data;
@@ -90,19 +87,9 @@ export class NewpedidoComponent implements OnInit {
       this.cliente = data;
     })
 
-    this.vehiculoSvc.getVehiculos()
-    .subscribe(data => {
-      this.vehiculo = data;
-    })
-
     this.ciudadSvc.getProducts()
     .subscribe(data => {
       this.ciudad = data;
-    })
-
-    this.almacenSvc.getAlmacens()
-    .subscribe(data => {
-      this.almacen = data;
     })
   }
 
@@ -137,6 +124,37 @@ export class NewpedidoComponent implements OnInit {
 
   cancel(){
     this.router.navigate(['/pedidos']);
+  }
+
+  cargarElementByLogistica(){
+
+    this.idLogistica = this.model.idLogistica.idLogistica;
+
+    console.log(this.idLogistica);
+
+    this.productSvc.getProductByLogistica(this.idLogistica).subscribe(data =>{
+      this.producto = data;
+    },
+    error => {console.error(error)})
+
+    this.vehiculoSvc.getVehiculoByLogistica(this.idLogistica).subscribe(data =>{
+      this.vehiculo = data;
+    },
+    error => {console.error(error)})
+
+  }
+
+  cargarAlmacenByCiudad(){
+
+    console.log(this.idLogistica);
+    this.idCiudad = this.model.idCiudad.id;
+    console.log(this.idCiudad);
+
+    this.almacenSvc.getUserByAlmacenLogisticaCiudad(this.idLogistica, this.idCiudad).subscribe(data =>{
+      this.almacen = data;
+    },
+    error => {console.error(error)})
+
   }
 
 }

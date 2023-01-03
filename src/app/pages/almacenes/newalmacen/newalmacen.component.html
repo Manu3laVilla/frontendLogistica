@@ -5,9 +5,9 @@
 
   <form class="form item" #newproductForm="ngForm">
     <mat-form-field appearance="fill">
-      <mat-label>Digita El Nombre Del Almacen</mat-label>
+      <mat-label>Digita El Nombre Del Almacén</mat-label>
       <input matInput name="nombreAlmacen" [(ngModel)]="model.nombreAlmacen" #nombreAlmacen="ngModel" required>
-      <mat-error *ngIf="!nombreAlmacen.valid || nombreAlmacen.pristine">El Nombre Del Almacen Es Obligatorio</mat-error>
+      <mat-error *ngIf="!nombreAlmacen.valid || nombreAlmacen.pristine">El Nombre Del Almacén Es Obligatorio</mat-error>
       <mat-hint>Nombre Almacen</mat-hint>
     </mat-form-field>
 
@@ -29,8 +29,8 @@
           {{c.nombreCiudad}}
         </mat-option>
       </mat-select>
-      <mat-error *ngIf="!idCiudadAlmacen.valid || idCiudadAlmacen.pristine">La Ubicación Del Almacen Es Obligatoria</mat-error>
-      <mat-hint>Ubicación Del Almacen</mat-hint>
+      <mat-error *ngIf="!idCiudadAlmacen.valid || idCiudadAlmacen.pristine">La Ubicación Del Almacén Es Obligatoria</mat-error>
+      <mat-hint>Ubicación Del Almacén</mat-hint>
     </mat-form-field>
   </form>
 </div>

@@ -4,68 +4,80 @@
   </p>
 
   <form class="form item" #newproductForm="ngForm">
-    <mat-form-field appearance="fill">
-      <mat-label>Digita La Identificación Del Cliente</mat-label>
-      <input matInput
-      name="identificacion"
-      [(ngModel)]="model.identificacion"
-      #identificacion="ngModel"
-      required
-      pattern='^[0-9]+$'>
-      <mat-error *ngIf="!identificacion.valid || identificacion.pristine">
-        La Identificación Del Cliente Es Obligatoria y Solo Admite Números
-      </mat-error>
-      <mat-hint>Identificación Cliente</mat-hint>
-    </mat-form-field>
+    <div class="container__item col">
+      <mat-form-field appearance="fill">
+        <mat-label>Digita La Identificación Del Cliente</mat-label>
+        <input matInput
+        name="identificacion"
+        [(ngModel)]="model.identificacion"
+        #identificacion="ngModel"
+        required
+        pattern='^[0-9]+$'>
+        <mat-error *ngIf="!identificacion.valid || identificacion.pristine">
+          La Identificación Del Cliente Es Obligatoria y Solo Admite Números
+        </mat-error>
+        <mat-hint>Identificación Cliente</mat-hint>
+      </mat-form-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Digita El Nombre Del Cliente</mat-label>
-      <input matInput name="nombreCliente" [(ngModel)]="model.nombreCliente" #nombreCliente="ngModel" required>
-      <mat-error *ngIf="!nombreCliente.valid || nombreCliente.pristine">El Nombre Del Cliente Es Obligatorio</mat-error>
-      <mat-hint>Nombre Cliente</mat-hint>
-    </mat-form-field>
+      <div style="width: 30px;"></div>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Digita El Apellido Del Cliente</mat-label>
-      <input matInput name="apellidoCliente" [(ngModel)]="model.apellidoCliente" #apellidoCliente="ngModel" required>
-      <mat-error *ngIf="!apellidoCliente.valid || apellidoCliente.pristine">El Apellido Del Cliente Es Obligatorio</mat-error>
-      <mat-hint>Apellido Cliente</mat-hint>
-    </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Digita El Nombre Del Cliente</mat-label>
+        <input matInput name="nombreCliente" [(ngModel)]="model.nombreCliente" #nombreCliente="ngModel" required>
+        <mat-error *ngIf="!nombreCliente.valid || nombreCliente.pristine">El Nombre Del Cliente Es Obligatorio</mat-error>
+        <mat-hint>Nombre Cliente</mat-hint>
+      </mat-form-field>
+    </div>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Digita La Dirección Del Cliente</mat-label>
-      <input matInput name="direccionCliente" [(ngModel)]="model.direccionCliente" #direccionCliente="ngModel" required>
-      <mat-error *ngIf="!direccionCliente.valid || direccionCliente.pristine">La Dirección Del Cliente Es Obligatoria</mat-error>
-      <mat-hint>Dirreción Cliente</mat-hint>
-    </mat-form-field>
+    <div class="container__item col">
+      <mat-form-field appearance="fill">
+        <mat-label>Digita El Apellido Del Cliente</mat-label>
+        <input matInput name="apellidoCliente" [(ngModel)]="model.apellidoCliente" #apellidoCliente="ngModel" required>
+        <mat-error *ngIf="!apellidoCliente.valid || apellidoCliente.pristine">El Apellido Del Cliente Es Obligatorio</mat-error>
+        <mat-hint>Apellido Cliente</mat-hint>
+      </mat-form-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Digita El Correo Electrónico Del Cliente</mat-label>
-      <input matInput
-      name="correoCliente"
-      [(ngModel)]="model.correoCliente"
-      #correoCliente="ngModel"
-      required
-      pattern='^[a-z]+[a-z0-9._-]+@[a-z]+\.[a-z.]{2,5}$'>
-      <mat-error *ngIf="!correoCliente.valid || correoCliente.pristine">
-        El Correo Electrónico Del Cliente Es Obligatorio y Debe Tener Un Formato Válido
-      </mat-error>
-      <mat-hint>Correo Electrónico Cliente</mat-hint>
-    </mat-form-field>
+      <div style="width: 30px;"></div>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Digita El Teléfono Del Cliente</mat-label>
-      <input matInput
-      name="telefonoCliente"
-      [(ngModel)]="model.telefonoCliente"
-      #telefonoCliente="ngModel"
-      required
-      pattern='^[0-9]+$'>
-      <mat-error *ngIf="!telefonoCliente.valid || telefonoCliente.pristine">
-        El Teléfono Del Cliente Es Obligatorio y Solo Admite Números
-      </mat-error>
-      <mat-hint>Teléfono Cliente</mat-hint>
-    </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Digita La Dirección Del Cliente</mat-label>
+        <input matInput name="direccionCliente" [(ngModel)]="model.direccionCliente" #direccionCliente="ngModel" required>
+        <mat-error *ngIf="!direccionCliente.valid || direccionCliente.pristine">La Dirección Del Cliente Es Obligatoria</mat-error>
+        <mat-hint>Dirreción Cliente</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div class="container__item col">
+      <mat-form-field appearance="fill">
+        <mat-label>Digita El Correo Electrónico Del Cliente</mat-label>
+        <input matInput
+        name="correoCliente"
+        [(ngModel)]="model.correoCliente"
+        #correoCliente="ngModel"
+        required
+        pattern='^[a-z]+[a-z0-9._-]+@[a-z]+\.[a-z.]{2,5}$'>
+        <mat-error *ngIf="!correoCliente.valid || correoCliente.pristine">
+          El Correo Electrónico Del Cliente Es Obligatorio y Debe Tener Un Formato Válido
+        </mat-error>
+        <mat-hint>Correo Electrónico Cliente</mat-hint>
+      </mat-form-field>
+
+      <div style="width: 30px;"></div>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Digita El Teléfono Del Cliente</mat-label>
+        <input matInput
+        name="telefonoCliente"
+        [(ngModel)]="model.telefonoCliente"
+        #telefonoCliente="ngModel"
+        required
+        pattern='^[0-9]+$'>
+        <mat-error *ngIf="!telefonoCliente.valid || telefonoCliente.pristine">
+          El Teléfono Del Cliente Es Obligatorio y Solo Admite Números
+        </mat-error>
+        <mat-hint>Teléfono Cliente</mat-hint>
+      </mat-form-field>
+    </div>
   </form>
 </div>
 <div class="container__button col">

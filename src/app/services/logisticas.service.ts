@@ -15,4 +15,8 @@ export class LogisticasService {
   getProducts(): Observable<Logistica[]>{
     return this.http.get<Logistica[]>(`${this.url}/all`)
   }
+
+  getLogisticaByLogistica(idLogistica:number): Observable<Logistica[]>{
+    return this.http.get<Logistica[]>(`${this.url}/by/${idLogistica}`);
+  }
 }

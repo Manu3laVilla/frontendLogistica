@@ -14,7 +14,7 @@ export class AlmacenesComponent implements OnInit{
 
 
   almacens!: Almacen[];
-  displayedColumns = ['idAlmacen','nombreAlmacen','idLogisticaAlmacen','idCiudadAlmacen','editar','eliminar'];
+  displayedColumns = ['idAlmacen','nombreAlmacen','idLogisticaAlmacen','idCiudadAlmacen','opciones'];
   dataSource!: MatTableDataSource<Almacen>;
   isSearch: boolean = false;
   search: string=  '';

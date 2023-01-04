@@ -14,7 +14,7 @@ export class PedidosComponent implements OnInit {
 
 
   pedidos!: Pedido[];
-  displayedColumns = ['idPlan','guia','idClientePedido','idLogisticaPedido','costoEnvio','costoPagar','editar','eliminar'];
+  displayedColumns = ['idPlan','guia','idClientePedido','idLogisticaPedido','costoEnvio','costoPagar','opciones'];
   dataSource!: MatTableDataSource<Pedido>;
   dato: any;
   index!: any;

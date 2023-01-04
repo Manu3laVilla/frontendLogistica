@@ -25,7 +25,7 @@ import { VehiculosService } from 'src/app/services/vehiculos.service';
 export class NewpedidoComponent implements OnInit {
 
   hide = true;
-  model: any = {idPlan: 0, idCliente: '', idLogistica: '', idProducto: '', idVehiculo: '', idCiudad: '', idCentro: '', cantidad: ''};
+  model: any = { idPlan: 0, idCliente: '', idLogistica: '', idProducto: '', idVehiculo: '', idCiudad: '', idCentro: '', cantidad: '' };
   pedido: Pedido[] = [];
   logistica!: Logistica[];
   producto!: Producto[];
@@ -34,8 +34,8 @@ export class NewpedidoComponent implements OnInit {
   ciudad!: Ciudad[];
   almacen!: Almacen[];
 
-  idLogistica! : number;
-  idCiudad! : number;
+  idLogistica!: number;
+  idCiudad!: number;
 
   id!: number;
   isEdit: boolean = false;
@@ -50,110 +50,102 @@ export class NewpedidoComponent implements OnInit {
     private ciudadSvc: CiudadesService,
     private almacenSvc: AlmacenesService,
     private activatedRoute: ActivatedRoute
-  ){
+  ) {
     this.id = this.activatedRoute.snapshot.params['id'];
-    if(this.id)
-    {
+    if (this.id) {
       this.isEdit = true;
       this.pedidoSvc
-      .getPedidos()
-      .subscribe((data:Pedido[]) =>{
-        this.pedido = data;
-        this.model = this.pedido.find((m) => {return m.idPlan == this.id});
-      },
-      (error) =>{
-        console.log(error);
-      })
+        .getPedidos()
+        .subscribe((data: Pedido[]) => {
+          this.pedido = data;
+          this.model = this.pedido.find((m) => { return m.idPlan == this.id });
+        },
+          (error) => {
+            console.log(error);
+          })
     }
-    else
-    {
+    else {
       this.isEdit = false;
     }
   }
 
   ngOnInit(): void {
     this.logisticaSvc.getProducts()
-    .subscribe(data => {
-      this.logistica = data;
-    })
+      .subscribe(data => {
+        this.logistica = data;
+      })
 
     this.pedidoSvc.getPedidos()
-    .subscribe(data => {
-      this.pedido = data;
-    })
+      .subscribe(data => {
+        this.pedido = data;
+      })
 
     this.clienteSvc.getClients()
-    .subscribe(data => {
-      this.cliente = data;
-    })
+      .subscribe(data => {
+        this.cliente = data;
+      })
 
     this.ciudadSvc.getProducts()
-    .subscribe(data => {
-      this.ciudad = data;
-    })
+      .subscribe(data => {
+        this.ciudad = data;
+      })
   }
 
-  onSave({ value : formData} : NgForm): void{
-    if(this.isEdit)
-    {
+  onSave({ value: formData }: NgForm): void {
+    if (this.isEdit) {
       console.log('Editar', formData);
       const data = {
         ...formData
       }
-        this.pedidoSvc.updatePedidos(data,this.id)
+      this.pedidoSvc.updatePedidos(data, this.id)
         .pipe(
           tap(res => console.log('Pedido =>', res)),
           tap(() => this.router.navigate(['/pedidos']))
         )
         .subscribe()
     }
-    else
-    {
+    else {
       console.log('Guardar...', formData);
       const data = {
         ...formData
       }
       this.pedidoSvc.savePedidos(data)
-      .pipe(
-        tap(res => console.log('Pedido =>', res)),
-        tap(() => this.router.navigate(['/pedidos']))
-      )
-      .subscribe()
+        .pipe(
+          tap(res => console.log('Pedido =>', res)),
+          tap(() => this.router.navigate(['/pedidos']))
+        )
+        .subscribe()
     }
   }
 
-  cancel(){
+  cancel() {
     this.router.navigate(['/pedidos']);
   }
 
-  cargarElementByLogistica(){
+  cargarElementByLogistica() {
 
     this.idLogistica = this.model.idLogistica.idLogistica;
 
-    console.log(this.idLogistica);
-
-    this.productSvc.getProductByLogistica(this.idLogistica).subscribe(data =>{
+    this.productSvc.getProductByLogistica(this.idLogistica).subscribe(data => {
       this.producto = data;
     },
-    error => {console.error(error)})
+      error => { console.error(error) })
 
-    this.vehiculoSvc.getVehiculoByLogistica(this.idLogistica).subscribe(data =>{
+    this.vehiculoSvc.getVehiculoByLogistica(this.idLogistica).subscribe(data => {
       this.vehiculo = data;
     },
-    error => {console.error(error)})
+      error => { console.error(error) })
 
   }
 
-  cargarAlmacenByCiudad(){
+  cargarAlmacenByCiudad() {
 
-    console.log(this.idLogistica);
     this.idCiudad = this.model.idCiudad.id;
-    console.log(this.idCiudad);
 
-    this.almacenSvc.getUserByAlmacenLogisticaCiudad(this.idLogistica, this.idCiudad).subscribe(data =>{
+    this.almacenSvc.getUserByAlmacenLogisticaCiudad(this.idLogistica, this.idCiudad).subscribe(data => {
       this.almacen = data;
     },
-    error => {console.error(error)})
+      error => { console.error(error) })
 
   }
 

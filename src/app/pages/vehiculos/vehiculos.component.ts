@@ -14,7 +14,7 @@ export class VehiculosComponent implements OnInit{
 
 
   vehiculos!: Vehiculo[];
-  displayedColumns = ['id','placaVehiculo','idLogisticaVehiculo','editar','eliminar'];
+  displayedColumns = ['id','placaVehiculo','idLogisticaVehiculo','opciones'];
   dataSource!: MatTableDataSource<Vehiculo>;
   dato: any;
   index!: any;

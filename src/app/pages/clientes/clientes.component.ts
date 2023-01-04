@@ -14,7 +14,7 @@ import { ClientesService } from 'src/app/services/clientes.service';
 export class ClientesComponent implements OnInit{
 
   clients!: Cliente[];
-  displayedColumns = ['id','identificacion','nombreCliente','correoCliente','editar','eliminar'];
+  displayedColumns = ['id','identificacion','nombreCliente','correoCliente','opciones'];
   dataSource!: MatTableDataSource<Cliente>;
   isSearch: boolean = false;
   search: number = 0;

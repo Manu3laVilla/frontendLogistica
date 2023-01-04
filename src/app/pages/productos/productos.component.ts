@@ -14,7 +14,7 @@ export class ProductosComponent implements OnInit{
 
 
   products!: Producto[];
-  displayedColumns = ['id','nombreProducto','idlogisticaproducto','editar','eliminar'];
+  displayedColumns = ['id','nombreProducto','idlogisticaproducto','opciones'];
   dataSource!: MatTableDataSource<Producto>;
   isSearch: boolean = false;
   search: string=  '';

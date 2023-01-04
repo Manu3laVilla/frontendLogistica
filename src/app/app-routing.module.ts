@@ -18,7 +18,9 @@ const routes: Routes = [
   { path: 'newvehiculomaritimo', loadChildren: () => import('./pages/vehiculos/newvehiculomaritimo/newvehiculomaritimo.module').then(m => m.NewvehiculomaritimoModule) },
   { path: 'newvehiculomaritimo/:id', loadChildren: () => import('./pages/vehiculos/newvehiculomaritimo/newvehiculomaritimo.module').then(m => m.NewvehiculomaritimoModule) },
   { path: 'newpedido', loadChildren: () => import('./pages/pedidos/newpedido/newpedido.module').then(m => m.NewpedidoModule) },
-  { path: 'newpedido/:id', loadChildren: () => import('./pages/pedidos/newpedido/newpedido.module').then(m => m.NewpedidoModule) }
+  { path: 'newpedido/:id', loadChildren: () => import('./pages/pedidos/newpedido/newpedido.module').then(m => m.NewpedidoModule) },
+  { path: 'detail', loadChildren: () => import('./pages/pedidos/detail/detail.module').then(m => m.DetailModule) },
+  { path: 'detail/:id', loadChildren: () => import('./pages/pedidos/detail/detail.module').then(m => m.DetailModule) }
 ];
 
 @NgModule({

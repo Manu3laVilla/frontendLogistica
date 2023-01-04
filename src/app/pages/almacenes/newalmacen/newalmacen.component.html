@@ -12,8 +12,12 @@
     </mat-form-field>
 
     <mat-form-field appearance="fill">
-      <mat-label>Selecciona El Tipo De Almacenaje</mat-label>
-      <mat-select matInput name="idLogisticaAlmacen" [(ngModel)]="model.idLogisticaAlmacen" #idLogisticaAlmacen="ngModel" required>
+      <mat-label *ngIf="model.idLogisticaAlmacen">{{model.idLogisticaAlmacen.tipoLogistica}}</mat-label>
+      <mat-select matInput
+      placeholder="Selecciona El Tipo De Almacenaje"
+      name="idLogisticaAlmacen"
+      [(ngModel)]="model.idLogisticaAlmacen"
+      #idLogisticaAlmacen="ngModel" required>
         <mat-option *ngFor="let l of logistica" [value]="l">
           {{l.tipoLogistica}}
         </mat-option>
@@ -23,8 +27,12 @@
     </mat-form-field>
 
     <mat-form-field appearance="fill">
-      <mat-label>Selecciona La Ciudad</mat-label>
-      <mat-select matInput name="idCiudadAlmacen" [(ngModel)]="model.idCiudadAlmacen" #idCiudadAlmacen="ngModel" required>
+      <mat-label *ngIf="model.idCiudadAlmacen">{{model.idCiudadAlmacen.nombreCiudad}}</mat-label>
+      <mat-select matInput
+      placeholder="Selecciona La Ciudad"
+      name="idCiudadAlmacen"
+      [(ngModel)]="model.idCiudadAlmacen"
+      #idCiudadAlmacen="ngModel" required>
         <mat-option *ngFor="let c of ciudad" [value]="c">
           {{c.nombreCiudad}}
         </mat-option>

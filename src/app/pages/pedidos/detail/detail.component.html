@@ -1,0 +1,74 @@
+<div class="container">
+  <p class="content">
+    Ficha Técnica Pedido #{{model.idPlan}}
+  </p>
+
+  <form class="form item" #newproductForm="ngForm">
+    <div class="container__item col">
+      <mat-form-field appearance="fill">
+        <b>Guía De Envío: </b>{{model.guia}}
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <b>Cliente: </b>{{model.idCliente.nombreCliente}} {{model.idCliente.apellidoCliente}}
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <b>Ciudad De Entrega: </b>{{model.idCiudad.nombreCiudad}}
+      </mat-form-field>
+    </div>
+
+    <div class="container__item col">
+      <mat-form-field appearance="fill">
+        <b>Producto: </b>{{model.idProducto.nombreProducto}}
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <b>Cantidad: </b>{{model.cantidad}}
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <b>Fecha De Registro: </b>{{model.fechaRegistro}}
+      </mat-form-field>
+    </div>
+
+    <div class="container__item col">
+      <mat-form-field appearance="fill">
+        <b>Tipo De Entrega: </b>{{model.idLogistica.tipoLogistica}}
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <b>Costo De Envío: </b>${{model.costoEnvio}}
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <b>Valor Por Pagar: </b>${{model.costoPagar}}
+      </mat-form-field>
+    </div>
+
+    <div class="container__item col">
+      <mat-form-field appearance="fill">
+        <b>Vehículo De Entrega: </b>{{model.idVehiculo.placaVehiculo}}
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <b>Centro De Entrega: </b>{{model.idCentro.nombreAlmacen}}
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <b>Fecha De Entrega: </b>{{model.fechaEntrega}}
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+<div class="container__button col">
+  <button
+  mat-raised-button
+  color="primary"
+  type="submit"
+  (click)="cancel()">
+    Regresar
+  </button>
+</div>
+
+

@@ -12,8 +12,12 @@
     </mat-form-field>
 
     <mat-form-field appearance="fill">
-      <mat-label>Selecciona El Tipo De Entrega</mat-label>
-      <mat-select matInput name="idLogisticaProducto" [(ngModel)]="model.idLogisticaProducto" #idLogisticaProducto="ngModel" required>
+      <mat-label *ngIf="model.idLogisticaProducto">{{model.idLogisticaProducto.tipoLogistica}}</mat-label>
+      <mat-select matInput
+      placeholder="Selecciona El Tipo De Entrega"
+      name="idLogisticaProducto"
+      [(ngModel)]="model.idLogisticaProducto"
+      #idLogisticaProducto="ngModel" required>
         <mat-option *ngFor="let l of logistica" [value]="l">
           {{l.tipoLogistica}}
         </mat-option>

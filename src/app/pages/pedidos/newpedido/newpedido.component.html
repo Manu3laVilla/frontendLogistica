@@ -6,22 +6,30 @@
   <form class="form item" #newproductForm="ngForm">
     <div class="container__item col">
       <mat-form-field appearance="fill">
-        <mat-label>Selecciona El Cliente</mat-label>
-        <mat-select matInput name="idCliente" [(ngModel)]="model.idCliente" #idCliente="ngModel" required>
+        <mat-label *ngIf="model.idCliente">{{model.idCliente.nombreCliente}} {{model.idCliente.apellidoCliente}}</mat-label>
+        <mat-select matInput
+        placeholder="Selecciona El Cliente"
+        name="idCliente"
+        [(ngModel)]="model.idCliente"
+        #idCliente="ngModel" required>
           <mat-option *ngFor="let c of cliente" [value]="c">
             {{c.nombreCliente}} {{c.apellidoCliente}}
           </mat-option>
         </mat-select>
         <mat-error *ngIf="!idCliente.valid || idCliente.pristine">El Cliente Es Obligatorio</mat-error>
-        <mat-hint>Tipo De Entrega</mat-hint>
+        <mat-hint>Cliente</mat-hint>
       </mat-form-field>
 
       <div style="width: 30px;"></div>
 
       <mat-form-field appearance="fill">
-        <mat-label>Selecciona El Tipo De Entrega</mat-label>
-        <mat-select matInput name="idLogistica" [(ngModel)]="model.idLogistica" #idLogistica="ngModel"
-          (ngModelChange)="cargarElementByLogistica()" required>
+        <mat-label *ngIf="model.idLogistica">{{model.idLogistica.tipoLogistica}}</mat-label>
+        <mat-select matInput
+        placeholder="Selecciona El Tipo De Entrega"
+        name="idLogistica"
+        [(ngModel)]="model.idLogistica"
+        #idLogistica="ngModel"
+        (ngModelChange)="cargarElementByLogistica()" required>
           <mat-option *ngFor="let l of logistica" [value]="l">
             {{l.tipoLogistica}}
           </mat-option>
@@ -33,8 +41,12 @@
 
     <div class="container__item col">
       <mat-form-field appearance="fill">
-        <mat-label>Selecciona El Producto</mat-label>
-        <mat-select matInput name="idProducto" [(ngModel)]="model.idProducto" #idProducto="ngModel" required>
+        <mat-label *ngIf="model.idProducto">{{model.idProducto.nombreProducto}}</mat-label>
+        <mat-select matInput
+        placeholder="Selecciona El Producto"
+        name="idProducto"
+        [(ngModel)]="model.idProducto"
+        #idProducto="ngModel" required>
           <mat-option *ngFor="let p of producto" [value]="p">
             {{p.nombreProducto}}
           </mat-option>
@@ -57,8 +69,12 @@
 
     <div class="container__item col">
       <mat-form-field appearance="fill">
-        <mat-label>Selecciona El Vehiculo</mat-label>
-        <mat-select matInput name="idVehiculo" [(ngModel)]="model.idVehiculo" #idVehiculo="ngModel" required>
+        <mat-label *ngIf="model.idVehiculo">{{model.idVehiculo.placaVehiculo}}</mat-label>
+        <mat-select matInput
+        placeholder="Selecciona El Vehiculo"
+        name="idVehiculo"
+        [(ngModel)]="model.idVehiculo"
+        #idVehiculo="ngModel" required>
           <mat-option *ngFor="let v of vehiculo" [value]="v">
             {{v.placaVehiculo}}
           </mat-option>
@@ -70,9 +86,13 @@
       <div style="width: 30px;"></div>
 
       <mat-form-field appearance="fill">
-        <mat-label>Selecciona La Ciudad</mat-label>
-        <mat-select matInput name="idCiudad" [(ngModel)]="model.idCiudad" #idCiudad="ngModel"
-          (ngModelChange)="cargarAlmacenByCiudad()" required>
+        <mat-label *ngIf="model.idCiudad">{{model.idCiudad.nombreCiudad}}</mat-label>
+        <mat-select matInput
+        placeholder="Selecciona La Ciudad"
+        name="idCiudad"
+        [(ngModel)]="model.idCiudad"
+        #idCiudad="ngModel"
+        (ngModelChange)="cargarAlmacenByCiudad()" required>
           <mat-option *ngFor="let cd of ciudad" [value]="cd">
             {{cd.nombreCiudad}}
           </mat-option>
@@ -84,14 +104,18 @@
 
     <div class="container__item">
       <mat-form-field appearance="fill">
-        <mat-label>Selecciona El Punto De Entrega</mat-label>
-        <mat-select matInput name="idCentro" [(ngModel)]="model.idCentro" #idCentro="ngModel" required>
+        <mat-label *ngIf="model.idCentro">{{model.idCentro.nombreAlmacen}}</mat-label>
+        <mat-select matInput
+        placeholder="Selecciona El Punto De Entrega"
+        name="idCentro"
+        [(ngModel)]="model.idCentro"
+        #idCentro="ngModel" required>
           <mat-option *ngFor="let a of almacen" [value]="a">
             {{a.nombreAlmacen}}
           </mat-option>
         </mat-select>
         <mat-error *ngIf="!idCentro.valid || idCentro.pristine">El Centro De Entrega Es Obligatorio</mat-error>
-        <mat-hint>Centro De Entrega</mat-hint>
+        <mat-hint>Punto De Distribución</mat-hint>
       </mat-form-field>
     </div>
   </form>

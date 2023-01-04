@@ -37,15 +37,9 @@ export class NewproductComponent implements OnInit {
       .subscribe((data:Producto[]) =>{
         this.producto = data;
         this.model = this.producto.find((m) => {return m.id == this.id});
-        this.dato = this.model.idLogisticaProducto.idLogistica;
-        console.log(this.dato);
       },
       (error) =>{
         console.log(error);
-      })
-      this.logisticaSvc.getLogisticaByLogistica(this.dato)
-      .subscribe(data => {
-        this.logistica = data;
       })
     }
     else

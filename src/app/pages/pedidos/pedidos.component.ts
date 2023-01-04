@@ -62,4 +62,8 @@ export class PedidosComponent implements OnInit {
   onUpdate(id: number): void {
     this.router.navigate([`/newpedido/${id}`]);
   }
+
+  onDetails(id: number): void {
+    this.router.navigate([`/detail/${id}`]);
+  }
 }

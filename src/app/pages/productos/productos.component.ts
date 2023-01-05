@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { delay, filter } from 'rxjs';
 import { Producto } from 'src/app/interfaces/producto';
 import { ProductosService } from 'src/app/services/productos.service';
 
@@ -27,16 +28,24 @@ export class ProductosComponent implements OnInit{
     private router: Router){}
 
   ngOnInit(): void {
-    if(this.search != ''){
+    if(this.search != '')
+    {
       this.productoSvc.getProductByNameProduct(this.search)
-      .subscribe(data => {this.dataSource = new MatTableDataSource(data);
-                          this.products = (this.products);});
-    } else{
+      .subscribe(data => {
+        console.log(data)
+        this.dataSource = new MatTableDataSource(data as Producto[]);
+        this.dataSource.paginator = this.paginator;
+      });
+    }else
+    {
       this.productoSvc.getProducts().subscribe(data => {
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.paginator = this.paginator;
       })
     }
+  }
+
+  onSearch(search: string){
 
   }
 

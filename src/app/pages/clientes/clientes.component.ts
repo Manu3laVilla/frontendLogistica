@@ -16,8 +16,8 @@ export class ClientesComponent implements OnInit{
   clients!: Cliente[];
   displayedColumns = ['id','identificacion','nombreCliente','correoCliente','opciones'];
   dataSource!: MatTableDataSource<Cliente>;
-  isSearch: boolean = false;
-  search: number = 0;
+  id!: any;
+  search: string = '';
 
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
 
@@ -27,11 +27,12 @@ export class ClientesComponent implements OnInit{
     private router: Router){}
 
   ngOnInit(): void {
-
-    if(this.search != 0){
-      this.clienteSvc.getUserByIdentification(this.search)
+    if(this.search != ''){
+      this.id = Number(this.search);
+      this.clienteSvc.getUserByIdentification(this.id)
       .subscribe(data => {this.dataSource = new MatTableDataSource(data)});
-    } else{
+    } else
+    {
       this.clienteSvc.getClients().subscribe(data => {
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.paginator = this.paginator;

@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Pedido } from 'src/app/interfaces/pedido';
 import { PedidosService } from 'src/app/services/pedidos.service';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-pedidos',
@@ -21,26 +22,42 @@ export class PedidosComponent implements OnInit {
   tipoLogistica: string = '';
   isSearch: boolean = false;
   search: string=  '';
+  roles!: string[];
+  isAdmin = false;
 
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
 
   constructor
   (
     private pedidoSvc: PedidosService,
-    private router: Router){}
+    private router: Router,
+    private tokenSvc: TokenService
+  ){}
 
   ngOnInit(): void {
 
-    if(this.search != ''){
+    if(this.search != '')
+    {
       this.pedidoSvc.getPedidoByGuia(this.search)
       .subscribe(data => {this.dataSource = new MatTableDataSource(data);
                           this.pedidos = (this.pedidos);});
-    } else{
+    }
+    else
+    {
       this.pedidoSvc.getPedidos().subscribe(data => {
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.paginator = this.paginator;
       })
     }
+
+    this.roles = this.tokenSvc.getAuthorities();
+    this.roles.forEach( rol =>
+      {
+        if(rol === 'ROLE_ADMIN')
+        {
+          this.isAdmin = true;
+        }
+      });
 
   }
 

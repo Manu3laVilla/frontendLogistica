@@ -1,0 +1,27 @@
+<app-header></app-header>
+
+<div class="container">
+  <div>
+    <div class="content" *ngIf="isLogged; else loggedOut">
+      Bienvenido {{nombreUsuario}}
+    </div>
+  </div>
+
+  <div style="margin-top: 10px;">
+    <h4>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas, tenetur dolor exercitationem <br>
+      delectus libero provident cumque autem voluptatibus tempora laborum at! Quo possimus officiis fugiat <br>
+      ducimus eligendi vero, rem nisi.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas, <br>
+      tenetur dolor exercitationem delectus libero provident cumque autem voluptatibus tempora laborum at! <br>
+      Quo possimus officiis fugiat ducimus eligendi vero, rem nisi.
+    </h4>
+  </div>
+
+  <div>
+    <ng-template #loggedOut>
+      <div class="content">No Has Iniciado Sesión</div>
+    </ng-template>
+  </div>
+</div>
+
+

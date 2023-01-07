@@ -1,3 +1,5 @@
+<app-header></app-header>
+
 <div class="container">
   <div class="col">
     <input _ngcontent-c27 type="text" placeholder="Guía Del Pedido" [(ngModel)]="search">
@@ -60,11 +62,11 @@
               <mat-icon>find_in_page</mat-icon>
             </button>
 
-            <button mat-button color="primary" (click)="onUpdate(row.idPlan)">
+            <button mat-button color="primary" (click)="onUpdate(row.idPlan)" *ngIf="isAdmin">
               <mat-icon>edit_square</mat-icon>
             </button>
 
-            <button mat-button color="accent" (click)="onDelete(row.idPlan)">
+            <button mat-button color="accent" (click)="onDelete(row.idPlan)" *ngIf="isAdmin">
               <mat-icon>delete_sweep</mat-icon>
             </button>
           </td>

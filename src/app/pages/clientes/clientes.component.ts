@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Cliente } from 'src/app/interfaces/cliente';
 import { ClientesService } from 'src/app/services/clientes.service';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-clientes',
@@ -18,20 +19,28 @@ export class ClientesComponent implements OnInit{
   dataSource!: MatTableDataSource<Cliente>;
   id!: any;
   search: string = '';
+  roles!: string[];
+  isAdmin = false;
+  flat = 0;
 
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
 
   constructor
   (
     private clienteSvc: ClientesService,
-    private router: Router){}
+    private router: Router,
+    private tokenSvc: TokenService
+  ){}
 
-  ngOnInit(): void {
-    if(this.search != ''){
+  ngOnInit(): void
+  {
+    if(this.search != '')
+    {
       this.id = Number(this.search);
       this.clienteSvc.getUserByIdentification(this.id)
       .subscribe(data => {this.dataSource = new MatTableDataSource(data)});
-    } else
+    }
+    else
     {
       this.clienteSvc.getClients().subscribe(data => {
         this.dataSource = new MatTableDataSource(data);
@@ -39,6 +48,20 @@ export class ClientesComponent implements OnInit{
       })
     }
 
+    this.roles = this.tokenSvc.getAuthorities();
+    this.roles.forEach( rol =>
+      {
+        if(rol === 'ROLE_ADMIN')
+        {
+          this.isAdmin = true;
+        }
+      });
+
+    if(this.isAdmin == false && this.flat == 0)
+    {
+      this.displayedColumns.pop();
+      this.flat = 1;
+    }
   }
 
   goToNewClient(): void{

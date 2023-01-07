@@ -10,6 +10,8 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { FormsModule, FormGroup } from "@angular/forms";
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   exports:[
@@ -23,7 +25,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     FormsModule,
     MatSelectModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatTabsModule,
+    MatSnackBarModule
   ]
 })
 

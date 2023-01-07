@@ -1,0 +1,66 @@
+<app-header></app-header>
+
+<div class="text-center" *ngIf="isLogged; else loggedOut">
+  <h2>¡Ya Has Iniciado Sesión!</h2>
+</div>
+
+<ng-template #loggedOut>
+  <div class="container">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div class="content">
+          <button mat-button color="accent" routerLink="/login">Inicio De Sesión</button>
+          <button mat-button color="accent" routerLink="/registro">Crear Cuenta</button>
+        </div>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="form">
+          <form #f="ngForm" (ngSubmit)="onLogin()" novalidate>
+            <p>
+              <mat-form-field appearance="outline">
+                <mat-label for="nombreUsuario">Digita Tu Nombre De Usuario</mat-label>
+                <input class="form-control"
+                matInput
+                type="text"
+                name="nombreUsuario"
+                [(ngModel)]="nombreUsuario"
+                id="nombreUsuario"
+                placeholder="Nombre De Usuario"
+                required>
+                <mat-hint>Nombre De Usuario</mat-hint>
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field appearance="outline">
+                <mat-label for="password">Digita Tu Contraseña</mat-label>
+                <input class="form-control"
+                matInput
+                [type]="hide ? 'password' : 'text'"
+                name="password"
+                [(ngModel)]="password"
+                id="password"
+                placeholder="Digita Tu Contraseña"
+                required>
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-hint>Contraseña</mat-hint>
+              </mat-form-field>
+            </p>
+            <div class="container__button">
+              <button
+              mat-raised-button
+              color="warn"
+              type="submit"
+              [disabled]="!f.valid">
+              <mat-icon>login</mat-icon>
+                Iniciar Sesión
+              </button>
+            </div>
+          </form>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</ng-template>

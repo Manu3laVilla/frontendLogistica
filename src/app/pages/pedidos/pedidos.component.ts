@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Pedido } from 'src/app/interfaces/pedido';
@@ -25,13 +26,17 @@ export class PedidosComponent implements OnInit {
   roles!: string[];
   isAdmin = false;
 
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
 
   constructor
   (
     private pedidoSvc: PedidosService,
     private router: Router,
-    private tokenSvc: TokenService
+    private tokenSvc: TokenService,
+    private snackBar: MatSnackBar
   ){}
 
   ngOnInit(): void {
@@ -39,8 +44,17 @@ export class PedidosComponent implements OnInit {
     if(this.search != '')
     {
       this.pedidoSvc.getPedidoByGuia(this.search)
-      .subscribe(data => {this.dataSource = new MatTableDataSource(data);
-                          this.pedidos = (this.pedidos);});
+      .subscribe(data => {
+        this.dataSource = new MatTableDataSource(data);
+        this.pedidos = (this.pedidos);
+      },
+      err => {
+        //console.log(err.error);
+        this.snackBar.open(err.error, 'Fail', {
+          duration: 4*1000, horizontalPosition: this.horizontalPosition,
+          verticalPosition: this.verticalPosition,
+        });
+      });
     }
     else
     {

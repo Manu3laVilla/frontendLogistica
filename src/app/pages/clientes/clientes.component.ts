@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
@@ -23,13 +24,17 @@ export class ClientesComponent implements OnInit{
   isAdmin = false;
   flat = 0;
 
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
 
   constructor
   (
     private clienteSvc: ClientesService,
     private router: Router,
-    private tokenSvc: TokenService
+    private tokenSvc: TokenService,
+    private snackBar: MatSnackBar
   ){}
 
   ngOnInit(): void
@@ -38,7 +43,17 @@ export class ClientesComponent implements OnInit{
     {
       this.id = Number(this.search);
       this.clienteSvc.getUserByIdentification(this.id)
-      .subscribe(data => {this.dataSource = new MatTableDataSource(data)});
+      .subscribe(data =>
+        {
+          this.dataSource = new MatTableDataSource(data);
+        },
+        err => {
+          //console.log(err.error);
+          this.snackBar.open(err.error, 'Fail', {
+            duration: 4*1000, horizontalPosition: this.horizontalPosition,
+            verticalPosition: this.verticalPosition,
+          });
+        });
     }
     else
     {

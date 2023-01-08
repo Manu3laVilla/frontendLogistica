@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, NgForm } from '@angular/forms';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { tap } from 'rxjs';
 import { Logistica } from 'src/app/interfaces/logistica';
@@ -24,11 +25,15 @@ export class NewvehiculoterrestreComponent implements OnInit {
   id!: number;
   isEdit: boolean = false;
 
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+
   constructor(
     private router: Router,
     private vehiculoSvc: VehiculosService,
     private logisticaSvc: LogisticasService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private snackBar: MatSnackBar
   ){
     this.id = this.activatedRoute.snapshot.params['id'];
     if(this.id)
@@ -77,6 +82,10 @@ export class NewvehiculoterrestreComponent implements OnInit {
         this.vehiculoSvc.updateVehiculo(data,this.id)
         .pipe(
           tap(res => console.log('Vehiculo =>', res)),
+          tap(() => this.snackBar.open('Vehículo Terrestre Editado', 'OK', {
+            duration: 4*1000, horizontalPosition: this.horizontalPosition,
+            verticalPosition: this.verticalPosition,
+          })),
           tap(() => this.router.navigate(['/vehiculos']))
         )
         .subscribe()
@@ -90,9 +99,19 @@ export class NewvehiculoterrestreComponent implements OnInit {
       this.vehiculoSvc.saveVehiculo(data)
       .pipe(
         tap(res => console.log('Vehiculo =>', res)),
+        tap(() => this.snackBar.open('Vehículo Terrestre Creado', 'OK', {
+          duration: 4*1000, horizontalPosition: this.horizontalPosition,
+          verticalPosition: this.verticalPosition,
+        })),
         tap(() => this.router.navigate(['/vehiculos']))
       )
-      .subscribe()
+      .subscribe(data =>{},err => {
+        //console.log(err.error);
+        this.snackBar.open(err.error, 'Fail', {
+          duration: 4*1000, horizontalPosition: this.horizontalPosition,
+          verticalPosition: this.verticalPosition,
+        });
+      });
     }
   }
 

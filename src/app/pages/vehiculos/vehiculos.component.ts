@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Vehiculo } from 'src/app/interfaces/vehiculo';
@@ -22,19 +23,33 @@ export class VehiculosComponent implements OnInit{
   isSearch: boolean = false;
   search: string=  '';
 
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
 
   constructor
   (
     private vehiculoSvc: VehiculosService,
-    private router: Router){}
+    private router: Router,
+    private snackBar: MatSnackBar
+  ){}
 
   ngOnInit(): void {
 
     if(this.search != ''){
       this.vehiculoSvc.getVehiculoByPlacaVehiculo(this.search)
-      .subscribe(data => {this.dataSource = new MatTableDataSource(data);
-                          this.vehiculos = (this.vehiculos);});
+      .subscribe(data => {
+        this.dataSource = new MatTableDataSource(data);
+        this.vehiculos = (this.vehiculos);
+      },
+      err => {
+        //console.log(err.error);
+        this.snackBar.open(err.error, 'Fail', {
+          duration: 4*1000, horizontalPosition: this.horizontalPosition,
+          verticalPosition: this.verticalPosition,
+        });
+      });
     } else{
       this.vehiculoSvc.getVehiculos().subscribe(data => {
         this.dataSource = new MatTableDataSource(data);

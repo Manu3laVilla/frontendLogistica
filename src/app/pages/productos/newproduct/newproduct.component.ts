@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
 import { Logistica } from 'src/app/interfaces/logistica';
@@ -22,11 +23,15 @@ export class NewproductComponent implements OnInit {
   id!: number;
   isEdit: boolean = false;
 
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+
   constructor(
     private router: Router,
     private productSvc: ProductosService,
     private logisticaSvc: LogisticasService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private snackBar: MatSnackBar
   ){
     this.id = this.activatedRoute.snapshot.params['id'];
     if(this.id)
@@ -70,6 +75,10 @@ export class NewproductComponent implements OnInit {
         this.productSvc.updateProduct(data,this.id)
         .pipe(
           tap(res => console.log('Producto =>', res)),
+          tap(() => this.snackBar.open('Producto Editado', 'OK', {
+            duration: 4*1000, horizontalPosition: this.horizontalPosition,
+            verticalPosition: this.verticalPosition,
+          })),
           tap(() => this.router.navigate(['/productos']))
         )
         .subscribe()
@@ -83,6 +92,10 @@ export class NewproductComponent implements OnInit {
       this.productSvc.saveProduct(data)
       .pipe(
         tap(res => console.log('Producto =>', res)),
+        tap(() => this.snackBar.open('Producto Creado', 'OK', {
+          duration: 4*1000, horizontalPosition: this.horizontalPosition,
+          verticalPosition: this.verticalPosition,
+        })),
         tap(() => this.router.navigate(['/productos']))
       )
       .subscribe()

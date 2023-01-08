@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
 import { Almacen } from 'src/app/interfaces/almacen';
@@ -25,12 +26,16 @@ export class NewalmacenComponent implements OnInit {
   id!: number;
   isEdit: boolean = false;
 
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+
   constructor(
     private router: Router,
     private almacenSvc: AlmacenesService,
     private logisticaSvc: LogisticasService,
     private ciudadSvc: CiudadesService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private snackBar: MatSnackBar
   ){
     this.id = this.activatedRoute.snapshot.params['id'];
     if(this.id)
@@ -79,6 +84,10 @@ export class NewalmacenComponent implements OnInit {
         this.almacenSvc.updateAlmacens(data,this.id)
         .pipe(
           tap(res => console.log('Almacen =>', res)),
+          tap(() => this.snackBar.open('Almacén Editado', 'OK', {
+            duration: 4*1000, horizontalPosition: this.horizontalPosition,
+            verticalPosition: this.verticalPosition,
+          })),
           tap(() => this.router.navigate(['/almacenes']))
         )
         .subscribe()
@@ -92,9 +101,19 @@ export class NewalmacenComponent implements OnInit {
       this.almacenSvc.saveAlmacen(data)
       .pipe(
         tap(res => console.log('Almacen =>', res)),
+        tap(() => this.snackBar.open('Almacén Creado', 'OK', {
+          duration: 4*1000, horizontalPosition: this.horizontalPosition,
+          verticalPosition: this.verticalPosition,
+        })),
         tap(() => this.router.navigate(['/almacenes']))
       )
-      .subscribe()
+      .subscribe(data =>{},err => {
+        //console.log(err.error);
+        this.snackBar.open(err.error, 'Fail', {
+          duration: 4*1000, horizontalPosition: this.horizontalPosition,
+          verticalPosition: this.verticalPosition,
+        });
+      });
     }
   }
 

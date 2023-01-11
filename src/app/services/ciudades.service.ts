@@ -8,7 +8,7 @@ import { Ciudad } from '../interfaces/ciudad';
 })
 export class CiudadesService {
 
-  private url = 'http://localhost:8080/logistica/ciudades';
+  private url = 'https://spring-logistica-back.herokuapp.com/logistica/ciudades';
 
   constructor(private http: HttpClient) { }
 

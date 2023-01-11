@@ -8,7 +8,7 @@ import { Almacen } from '../interfaces/almacen';
 })
 export class AlmacenesService {
 
-  private url = 'http://localhost:8080/logistica/almacenes';
+  private url = 'https://spring-logistica-back.herokuapp.com/logistica/almacenes';
 
   constructor(private http: HttpClient) { }
 

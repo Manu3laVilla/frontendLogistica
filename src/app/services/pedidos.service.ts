@@ -8,7 +8,7 @@ import { Pedido } from '../interfaces/pedido';
 })
 export class PedidosService {
 
-  private url = 'http://localhost:8080/logistica/pedidos';
+  private url = 'https://spring-logistica-back.herokuapp.com/logistica/pedidos';
 
   constructor(private http: HttpClient) { }
 

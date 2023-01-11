@@ -10,7 +10,7 @@ export class ProductosService {
 
   productInit = new Subject<Producto[]>;
 
-  private url = 'http://localhost:8080/logistica/productos';
+  private url = 'https://spring-logistica-back.herokuapp.com/logistica/productos';
 
   constructor(private http: HttpClient) { }
 

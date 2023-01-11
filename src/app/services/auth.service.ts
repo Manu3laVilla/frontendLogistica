@@ -10,7 +10,7 @@ import { NuevoUsuario } from '../interfaces/models/nuevo-usuario';
 })
 export class AuthService {
 
-  authURL = 'http://localhost:8080/logistica/auth';
+  authURL = 'https://spring-logistica-back.herokuapp.com/logistica/auth';
 
   constructor(private httpClient: HttpClient) { }
 

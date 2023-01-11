@@ -8,7 +8,7 @@ import { Vehiculo } from '../interfaces/vehiculo';
 })
 export class VehiculosService {
 
-  private url = 'http://localhost:8080/logistica/vehiculos';
+  private url = 'https://spring-logistica-back.herokuapp.com/logistica/vehiculos';
 
   constructor(private http: HttpClient) { }
 
